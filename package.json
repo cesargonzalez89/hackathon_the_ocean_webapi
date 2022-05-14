@@ -1,0 +1,20 @@
+{
+  "name": "hackathon_the_ocean_webapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanyCorVal/hackathon_the_ocean_webapi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanyCorVal/hackathon_the_ocean_webapi/issues"
+  },
+  "homepage": "https://github.com/DanyCorVal/hackathon_the_ocean_webapi#readme"
+}
