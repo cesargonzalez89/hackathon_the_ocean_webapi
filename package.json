@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/DanyCorVal/hackathon_the_ocean_webapi/issues"
   },
-  "homepage": "https://github.com/DanyCorVal/hackathon_the_ocean_webapi#readme"
+  "homepage": "https://github.com/DanyCorVal/hackathon_the_ocean_webapi#readme",
+  "devDependencies": {
+    "jest": "^28.1.0"
+  }
 }
