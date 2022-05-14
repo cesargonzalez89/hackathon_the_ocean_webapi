@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id Int @id @default(autoincrement())
+  description String @db.VarChar(255)
+  amount Int
+  dateCreated DateTime @default(now())
+  lastUpdated DateTime @updatedAt
+  users User[]
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(50)
+  firtsName String @db.VarChar(50)
+  lastName String @db.VarChar(50)
+  username String @db.VarChar(30)
+  password String @db.VarChar(30)
+  accessLevel String @db.VarChar(30)
+  profile Profile @relation(fields: [profileId], references: [id])
+  profileId  Int
+  dateCreated DateTime @default(now())
+  lastUpdated DateTime @updatedAt
+}
+
+model Events {
+  id Int @id @default(autoincrement())
+  description String @db.VarChar(150)
+  capacity Int
+  date DateTime
+  dateCreated DateTime @default(now())
+  lastUpdated DateTime @updatedAt
+}
+
+model ProtectedAreas {
+  id Int @id @default(autoincrement())
+  description String @db.VarChar(150)
+  location String @db.VarChar(50)
+  dateCreated DateTime @default(now())
+  lastUpdated DateTime @updatedAt
+}
+
+model Species {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(50)
+  specie String @db.VarChar(50)
+  qty Int
+  dateCreated DateTime @default(now())
+  lastUpdated DateTime @updatedAt
+}
+
+model Contributions {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(70)
+  dateCreated DateTime @default(now())
+  lastUpdated DateTime @updatedAt
+}
