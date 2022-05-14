@@ -103,6 +103,52 @@ app.get('/profiles', async (req, res) => {
       await prisma.user.delete({where: {id: id}});
       return res.json({message: "Eliminado correctamente"});
   });
+
+  ///////////////////////////////////////////Events////////////////////////////////////////////
+  app.get('/events', async (req, res) => {
+    const allEvents =  await prisma.events.findMany({});
+    res.json(allEvents);
+  });
+
+  app.get('/events/:id', async (req, res) => {
+    const id = req.params.id;
+    const event = await prisma.events.findUnique({where: {id: parseInt(id)}});
+    res.json(event);
+  });
+  
+  app.post('/events', async (req, res) => {
+    const event = {
+        description: req.body.description,
+        capacity: req.body.capacity,
+        date: req.body.date
+     };
+    const message = 'Evento creado.';
+    await prisma.events.create({data: event});
+    return res.json({message});
+  });
+  
+  app.put('/events/:id', async (req, res) => {
+      const id = parseInt(req.params.id);
+  
+      await prisma.events.update({
+          where: {
+              id: id
+          },
+          data: {
+            description: req.body.description,
+            capacity: req.body.capacity,
+            date: req.body.date
+          }
+      })
+  
+      return res.json({message: "Actualizado correctamente"});
+  });
+
+  app.delete('/events/:id', async (req, res) => {
+      const id = parseInt(req.params.id);
+      await prisma.events.delete({where: {id: id}});
+      return res.json({message: "Eliminado correctamente"});
+  });
   
 app.listen(port, () => {
   console.log(`Listening to requests on port ${port}`);
