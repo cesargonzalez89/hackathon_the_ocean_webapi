@@ -150,6 +150,51 @@ app.get('/profiles', async (req, res) => {
       return res.json({message: "Eliminado correctamente"});
   });
 
+  ///////////////////////////////////////////ProtectedAreas////////////////////////////////////////////
+  app.get('/areas', async (req, res) => {
+    const allAreas =  await prisma.protectedAreas.findMany({});
+    res.json(allAreas);
+  });
+
+  app.get('/areas/:id', async (req, res) => {
+    const id = req.params.id;
+    const area = await prisma.protectedAreas.findUnique({where: {id: parseInt(id)}});
+    res.json(area);
+  });
+  
+  app.post('/areas', async (req, res) => {
+    const area = {
+        description: req.body.description,
+        location: req.body.location
+     };
+    const message = 'Area protegida creada.';
+    await prisma.protectedAreas.create({data: area});
+    return res.json({message});
+  });
+  
+  app.put('/areas/:id', async (req, res) => {
+      const id = parseInt(req.params.id);
+  
+      await prisma.protectedAreas.update({
+          where: {
+              id: id
+          },
+          data: {
+            description: req.body.description,
+            location: req.body.location
+          }
+      })
+  
+      return res.json({message: "Actualizado correctamente"});
+  });
+
+  app.delete('/areas/:id', async (req, res) => {
+      const id = parseInt(req.params.id);
+      await prisma.protectedAreas.delete({where: {id: id}});
+      return res.json({message: "Eliminado correctamente"});
+  });
+
+
   ///////////////////////////////////////////Species////////////////////////////////////////////
   app.get('/species', async (req, res) => {
     const allSpecies =  await prisma.species.findMany({});
