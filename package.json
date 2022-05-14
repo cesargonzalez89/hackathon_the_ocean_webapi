@@ -9,7 +9,8 @@
     "start": "node server.js",
     "build": "node server.js",
     "linter": "node ./node_modules/eslint/bin/eslint.js .",
-    "linter-fix": "node ./node_modules/eslint/bin/eslint.js . --fix"
+    "linter-fix": "node ./node_modules/eslint/bin/eslint.js . --fix",
+    "postinstall": "prisma generate"
   },
   "repository": {
     "type": "git",
