@@ -41,3 +41,27 @@ model Events {
   dateCreated DateTime @default(now())
   lastUpdated DateTime @updatedAt
 }
+
+model ProtectedAreas {
+  id Int @id @default(autoincrement())
+  description String @db.VarChar(150)
+  location String @db.VarChar(50)
+  dateCreated DateTime @default(now())
+  lastUpdated DateTime @updatedAt
+}
+
+model Species {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(50)
+  specie String @db.VarChar(50)
+  qty Int
+  dateCreated DateTime @default(now())
+  lastUpdated DateTime @updatedAt
+}
+
+model Contributions {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(70)
+  dateCreated DateTime @default(now())
+  lastUpdated DateTime @updatedAt
+}
