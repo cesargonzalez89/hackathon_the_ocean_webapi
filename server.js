@@ -194,7 +194,6 @@ app.get('/profiles', async (req, res) => {
       return res.json({message: "Eliminado correctamente"});
   });
 
-
   ///////////////////////////////////////////Species////////////////////////////////////////////
   app.get('/species', async (req, res) => {
     const allSpecies =  await prisma.species.findMany({});
@@ -240,6 +239,48 @@ app.get('/profiles', async (req, res) => {
       await prisma.species.delete({where: {id: id}});
       return res.json({message: "Eliminado correctamente"});
   });
+
+    ///////////////////////////////////////////Contributions////////////////////////////////////////////
+    app.get('/contributions', async (req, res) => {
+        const allontributions =  await prisma.contributions.findMany({});
+        res.json(allContributions);
+      });
+    
+      app.get('/contributions/:id', async (req, res) => {
+        const id = req.params.id;
+        const contribution = await prisma.contributions.findUnique({where: {id: parseInt(id)}});
+        res.json(contribution);
+      });
+      
+      app.post('/contributions', async (req, res) => {
+        const contribution = {
+            name: req.body.name
+         };
+        const message = 'Contribucion creada.';
+        await prisma.contributions.create({data: contribution});
+        return res.json({message});
+      });
+      
+      app.put('/contributions/:id', async (req, res) => {
+          const id = parseInt(req.params.id);
+      
+          await prisma.contributions.update({
+              where: {
+                  id: id
+              },
+              data: {
+                name: req.body.name
+              }
+          })
+      
+          return res.json({message: "Actualizado correctamente"});
+      });
+    
+      app.delete('/contributions/:id', async (req, res) => {
+          const id = parseInt(req.params.id);
+          await prisma.contributions.delete({where: {id: id}});
+          return res.json({message: "Eliminado correctamente"});
+      });
   
 app.listen(port, () => {
   console.log(`Listening to requests on port ${port}`);
