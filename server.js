@@ -11,6 +11,8 @@ app.get('/', (req, res) => {
   res.json({message: 'alive'});
 });
 
+///////////////////////////////////////////Profile////////////////////////////////////////////
+
 app.get('/profiles', async (req, res) => {
     const allProfiles =  await prisma.profile.findMany({});
     res.json(allProfiles);
@@ -48,9 +50,57 @@ app.get('/profiles', async (req, res) => {
       return res.json({message: "Actualizado correctamente"});
   });
   
-  app.delete('/profiles/:id', async (req, res) => {
+  ///////////////////////////////////////////User////////////////////////////////////////////
+  app.get('/users', async (req, res) => {
+    const allUsers =  await prisma.user.findMany({});
+    res.json(allUsers);
+  });
+
+  app.get('/users/:id', async (req, res) => {
+    const id = req.params.id;
+    const user = await prisma.user.findUnique({where: {id: parseInt(id)}});
+    res.json(user);
+  });
+  
+  app.post('/users', async (req, res) => {
+    const user = {
+        name: req.body.name,
+        firtsName: req.body.firtsName,
+        lastName: req.body.lastName,
+        username: req.body.username,
+        password: req.body.password,
+        accessLevel: req.body.accessLevel,
+        profileId: req.body.profileId
+     };
+    const message = 'Usuario creado.';
+    await prisma.user.create({data: user});
+    return res.json({message});
+  });
+  
+  app.put('/users/:id', async (req, res) => {
       const id = parseInt(req.params.id);
-      await prisma.profile.delete({where: {id: id}});
+  
+      await prisma.user.update({
+          where: {
+              id: id
+          },
+          data: {
+            name: req.body.name,
+            firtsName: req.body.firtsName,
+            lastName: req.body.lastName,
+            username: req.body.username,
+            password: req.body.password,
+            accessLevel: req.body.accessLevel,
+            profileId: req.body.profileId
+          }
+      })
+  
+      return res.json({message: "Actualizado correctamente"});
+  });
+
+  app.delete('/users/:id', async (req, res) => {
+      const id = parseInt(req.params.id);
+      await prisma.user.delete({where: {id: id}});
       return res.json({message: "Eliminado correctamente"});
   });
   
