@@ -149,6 +149,52 @@ app.get('/profiles', async (req, res) => {
       await prisma.events.delete({where: {id: id}});
       return res.json({message: "Eliminado correctamente"});
   });
+
+  ///////////////////////////////////////////Species////////////////////////////////////////////
+  app.get('/species', async (req, res) => {
+    const allSpecies =  await prisma.species.findMany({});
+    res.json(allSpecies);
+  });
+
+  app.get('/species/:id', async (req, res) => {
+    const id = req.params.id;
+    const specie = await prisma.species.findUnique({where: {id: parseInt(id)}});
+    res.json(specie);
+  });
+  
+  app.post('/species', async (req, res) => {
+    const specie = {
+        name: req.body.name,
+        specie: req.body.specie,
+        qty: req.body.qty
+     };
+    const message = 'Especie creada.';
+    await prisma.species.create({data: specie});
+    return res.json({message});
+  });
+  
+  app.put('/species/:id', async (req, res) => {
+      const id = parseInt(req.params.id);
+  
+      await prisma.species.update({
+          where: {
+              id: id
+          },
+          data: {
+            name: req.body.name,
+            specie: req.body.specie,
+            qty: req.body.qty
+          }
+      })
+  
+      return res.json({message: "Actualizado correctamente"});
+  });
+
+  app.delete('/species/:id', async (req, res) => {
+      const id = parseInt(req.params.id);
+      await prisma.species.delete({where: {id: id}});
+      return res.json({message: "Eliminado correctamente"});
+  });
   
 app.listen(port, () => {
   console.log(`Listening to requests on port ${port}`);
