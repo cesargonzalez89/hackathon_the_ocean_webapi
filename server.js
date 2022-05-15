@@ -6,8 +6,11 @@ const specieController = require("./lib/controllers/specieController");
 const eventController = require("./lib/controllers/eventController");
 const contributionController = require("./lib/controllers/contributionController");
 const SecurityController = require("./lib/controllers/securityController");
-
+const Conn = require("./lib/utils/Conn");
 const app = express();
+
+console.log(Conn.getConnection);
+
 app.use(express.json());
 const port = process.env.PORT || 3000;
 

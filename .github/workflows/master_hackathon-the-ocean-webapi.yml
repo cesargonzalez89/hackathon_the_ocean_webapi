@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - hackathonTheOceanWebapi
+name: Build and deploy Node.js app to Azure Web App - hackathon-the-ocean-webapi
 
 on:
   push:
@@ -50,7 +50,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'hackathonTheOceanWebapi'
+          app-name: 'hackathon-the-ocean-webapi'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_45AA1E49B08743D9B362652C8AF3C1EE }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E3AC559D2BA946C082A59150E6D840C2 }}
           package: .
