@@ -4,7 +4,6 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "node ./server.js",
     "server": "node ./server.js",
     "test": "node ./node_modules/.bin/jest",
     "linter": "node ./node_modules/eslint/bin/eslint.js .",
