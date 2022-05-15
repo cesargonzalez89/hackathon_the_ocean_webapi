@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'hackathonTheOceanWebapi'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_45AA1E49B08743D9B362652C8AF3C1EE }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_20CF1F64A26B44369BE053E4D67FAE4A }}
           package: .
