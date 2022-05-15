@@ -2,7 +2,7 @@ const express = require('express');
 const Conn = require("./lib/utils/Conn");
 const app = express();
 
-Conn.getConnection;
+console.log(Conn.getConnection);
 
 app.use(express.json());
 const port = process.env.PORT || 3000;
