@@ -228,8 +228,6 @@ app.post("/logIn", async (req, res) => {
 
   const userLogin = await SecurityController.LogIn(user.username);
 
-  console.log(userLogin);
-
   if (!userLogin || userLogin.password != user.password)
     return res.json({ encontrado: false });
 
