@@ -8,8 +8,11 @@ const contributionController = require("./lib/controllers/contributionController
 const SecurityController = require("./lib/controllers/securityController");
 const Conn = require("./lib/utils/Conn");
 const app = express();
+const cors = require('cors');
 
 console.log(Conn.getConnection);
+
+app.use(cors())
 
 app.use(express.json());
 const port = process.env.PORT || 3000;
