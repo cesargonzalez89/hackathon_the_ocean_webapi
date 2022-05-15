@@ -1,10 +1,15 @@
 const express = require('express');
+const Conection = require('./lib/utils/Connection');
 const app = express();
+
+Connection.getConnection;
+
 app.use(express.json());
 const port = process.env.PORT || 3000;
 
 // Require para usar Prisma
 const { PrismaClient } = require('@prisma/client');
+const Connection = require('./test/utils/Connection');
 const prisma = new PrismaClient();
 
 app.get('/', (req, res) => {
